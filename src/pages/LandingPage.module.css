@@ -64,7 +64,7 @@
   z-index: 1;
   will-change: transform, opacity;
   backface-visibility: hidden;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* Different leaf sizes and rotations */
@@ -120,7 +120,7 @@
 
 @keyframes floatLeaf {
   0% {
-    transform: translateY(-10vh) translateX(var(--start-x)) rotate(0deg);
+    transform: translate3d(var(--start-x), -10vh, 0) rotate(0deg);
     opacity: 0;
   }
   10% {
@@ -130,7 +130,7 @@
     opacity: var(--leaf-opacity);
   }
   100% {
-    transform: translateY(110vh) translateX(var(--end-x)) rotate(720deg);
+    transform: translate3d(var(--end-x), 110vh, 0) rotate(720deg);
     opacity: 0;
   }
 }
@@ -151,21 +151,11 @@
 .leaf:nth-child(13) { --start-x: -80px; --end-x: 130px; left: 50%; animation-delay: 5s; --leaf-opacity: 0.6; }
 .leaf:nth-child(14) { --start-x: 70px; --end-x: -110px; left: 70%; animation-delay: 9s; --leaf-opacity: 0.45; }
 .leaf:nth-child(15) { --start-x: -10px; --end-x: 60px; left: 90%; animation-delay: 4s; --leaf-opacity: 0.65; }
-.leaf:nth-child(16) { --start-x: -90px; --end-x: 140px; left: 20%; animation-delay: 6s; --leaf-opacity: 0.5; }
-.leaf:nth-child(17) { --start-x: 80px; --end-x: -120px; left: 40%; animation-delay: 1s; --leaf-opacity: 0.55; }
-.leaf:nth-child(18) { --start-x: 0px; --end-x: 50px; left: 60%; animation-delay: 7s; --leaf-opacity: 0.6; }
-.leaf:nth-child(19) { --start-x: -100px; --end-x: 150px; left: 80%; animation-delay: 3s; --leaf-opacity: 0.45; }
-.leaf:nth-child(20) { --start-x: 90px; --end-x: -130px; left: 100%; animation-delay: 5s; --leaf-opacity: 0.65; }
-.leaf:nth-child(21) { --start-x: -25px; --end-x: 75px; left: 12%; animation-delay: 8s; --leaf-opacity: 0.5; }
-.leaf:nth-child(22) { --start-x: 15px; --end-x: -55px; left: 32%; animation-delay: 2s; --leaf-opacity: 0.55; }
-.leaf:nth-child(23) { --start-x: -85px; --end-x: 135px; left: 52%; animation-delay: 6s; --leaf-opacity: 0.6; }
-.leaf:nth-child(24) { --start-x: 75px; --end-x: -115px; left: 72%; animation-delay: 9s; --leaf-opacity: 0.45; }
-.leaf:nth-child(25) { --start-x: -5px; --end-x: 65px; left: 92%; animation-delay: 4s; --leaf-opacity: 0.65; }
-.leaf:nth-child(26) { --start-x: 5px; --end-x: -45px; left: 8%; animation-delay: 10s; --leaf-opacity: 0.5; }
-.leaf:nth-child(27) { --start-x: -95px; --end-x: 145px; left: 28%; animation-delay: 11s; --leaf-opacity: 0.55; }
-.leaf:nth-child(28) { --start-x: 85px; --end-x: -125px; left: 48%; animation-delay: 12s; --leaf-opacity: 0.6; }
-.leaf:nth-child(29) { --start-x: -15px; --end-x: 55px; left: 68%; animation-delay: 13s; --leaf-opacity: 0.45; }
-.leaf:nth-child(30) { --start-x: 95px; --end-x: -135px; left: 88%; animation-delay: 14s; --leaf-opacity: 0.65; }
+
+/* Only show 15 leaves on all devices */
+.leaf:nth-child(n+16) {
+  display: none;
+}
 
 .bgBubbles {
   position: absolute;
@@ -781,6 +771,7 @@
     height: 40px;
     animation-duration: 25s !important;
   }
+  
   .leaf:nth-child(7n),
   .leaf:nth-child(7n+1),
   .leaf:nth-child(7n+2),
@@ -806,9 +797,10 @@
     gap: 0.5rem;
   }
   
-  /* Hide leaves on mobile */
-  .bgLeaves {
-    display: none;
+  /* Optimize leaf animation for mobile */
+  .leaf {
+    animation-duration: 25s !important;
+    transform: translate3d(0,0,0);
   }
 }
 
@@ -847,5 +839,12 @@
   
   .emailLink {
     font-size: 0.95rem;
+  }
+  
+  /* Further optimize leaf animation for small screens */
+  .leaf {
+    width: 35px !important;
+    height: 35px !important;
+    animation-duration: 20s !important;
   }
 }

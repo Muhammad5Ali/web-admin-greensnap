@@ -8,9 +8,26 @@ import verifyImage from '../assets/images/verified-cleanup.jpeg';
 const LandingPage = () => {
   const apkDownloadUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-v1.0.0.apk";
   const [animated, setAnimated] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setAnimated(true);
+    
+    // Check if device is mobile
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIsMobile();
+    
+    // Listen for resize events
+    window.addEventListener('resize', checkIsMobile);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
   }, []);
 
   // mailto with encoded subject and body
@@ -41,9 +58,11 @@ const LandingPage = () => {
         })}
       </script>
 
-      {/* Enhanced Leaf Animation Background */}
+      {/* Enhanced Leaf Animation Background - Reduced leaf count for mobile */}
       <div className={styles.bgLeaves} aria-hidden>
-        {[...Array(30)].map((_, i) => <div key={`leaf-${i}`} className={styles.leaf}></div>)}
+        {[...Array(isMobile ? 15 : 30)].map((_, i) => (
+          <div key={`leaf-${i}`} className={styles.leaf}></div>
+        ))}
       </div>
       
       {/* Animated Background Elements */}
