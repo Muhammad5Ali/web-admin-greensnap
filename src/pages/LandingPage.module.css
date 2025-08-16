@@ -12,6 +12,7 @@
   --lightBackground: #e8f5e9;
   --darkGray: #2e7d32;
   --shadow: 0 8px 30px rgba(0, 100, 0, 0.1);
+  --yolo-accent: #00c853; /* Updated to match green theme */
 }
 
 .container {
@@ -285,11 +286,104 @@
 .subtitle {
   font-size: 1.3rem;
   color: var(--textSecondary);
-  margin-bottom: 2.5rem;
+  margin: 0 auto 2.5rem;
   max-width: 700px;
   line-height: 1.6;
+  padding: 0 1.5rem; /* Added padding for better spacing */
 }
 
+/* Download Options */
+.downloadOptions {
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.downloadTitle {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--textPrimary);
+}
+
+.downloadSubtitle {
+  font-size: 1.1rem;
+  color: var(--textSecondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem; /* Added padding for better spacing */
+}
+
+.downloadButtons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  align-items: stretch; /* Ensure equal height */
+}
+
+.downloadOption {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.downloadOption:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 100, 0, 0.15);
+}
+
+.versionDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Full height for vertical centering */
+  margin: 0; /* Remove default margin */
+}
+
+.versionDivider span {
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  color: var(--textSecondary);
+  box-shadow: var(--shadow);
+}
+
+.optionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.optionHeader h4 {
+  font-size: 1.5rem;
+  color: var(--textPrimary);
+  margin: 0;
+}
+
+.modelIcon {
+  font-size: 2.5rem;
+}
+
+.optionDescription {
+  color: var(--textSecondary);
+  min-height: 60px;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
 .buttons {
   display: flex;
   gap: 1.5rem;
@@ -306,7 +400,9 @@
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  text-align: center;
 }
 
 .downloadButton {
@@ -320,8 +416,11 @@
 .adminButton {
   background: white;
   border: 2px solid var(--primary);
-  color: var(--primary-dark); /* Better contrast */
+  color: var(--primary-dark);
   box-shadow: 0 5px 15px rgba(0, 200, 83, 0.2);
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .downloadButton:hover {
@@ -515,11 +614,54 @@
   50% { transform: translateX(10px); }
 }
 
+/* Stats Section */
+.statsSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 6rem auto 4rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.statsHeader {
+  margin-bottom: 3rem;
+}
+
+.statsTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--textPrimary);
+  position: relative;
+  display: inline-block;
+}
+
+.statsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  border-radius: 2px;
+}
+
+.statsSubtitle {
+  font-size: 1.2rem;
+  color: var(--textSecondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Stats Cards */
 .stats {
   display: flex;
   justify-content: center;
   gap: 3rem;
-  margin: 4rem 0;
+  margin: 2rem 0;
   flex-wrap: wrap;
   width: 100%;
   position: relative;
@@ -534,11 +676,50 @@
   box-shadow: var(--shadow);
   min-width: 200px;
   transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  max-width: 300px;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  z-index: 1;
+  transition: height 0.4s ease;
+}
+
+.statCard:hover::before {
+  height: 100%;
 }
 
 .statCard:hover {
   transform: translateY(-10px);
-  background: linear-gradient(to bottom, white, var(--lightBackground));
+}
+
+.statCard:hover h3,
+.statCard:hover p {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.statIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.statCard:hover .statIcon {
+  transform: scale(1.2);
+  color: white;
 }
 
 .statCard h3 {
@@ -548,6 +729,144 @@
   background: linear-gradient(to right, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.statCard:hover h3 {
+  -webkit-text-fill-color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.statCard p {
+  font-size: 1.1rem;
+  color: var(--textSecondary);
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.statCard:hover p {
+  color: white;
+}
+
+/* Skeleton Loading Styles */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonText {
+  height: 2.5rem;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+.skeletonText.short {
+  width: 70%;
+  height: 1.2rem;
+  margin: 0.8rem auto;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Error Message */
+.errorMessage {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  background: #ffebee;
+  border-radius: 10px;
+  color: #c62828;
+  font-weight: 500;
+}
+
+/* Technical Comparison */
+.techComparison {
+  width: 100%;
+  max-width: 1200px;
+  margin: 6rem auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.comparisonGrid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.comparisonCard {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow);
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  transition: all 0.3s ease;
+}
+
+.comparisonCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 100, 0, 0.15);
+}
+
+.modelHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modelIconLarge {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.comparisonCard h3 {
+  font-size: 1.8rem;
+  color: var(--textPrimary);
+  margin: 0;
+}
+
+.techFeatures {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.techFeatures li {
+  margin-bottom: 1rem;
+  padding-left: 30px;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.techFeatures li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.techNote {
+  font-style: italic;
+  color: var(--textSecondary);
+  max-width: 800px;
+  margin: 2rem auto 0;
 }
 
 .screenshots {
@@ -638,14 +957,38 @@
 
 .finalCta h2 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: var(--textPrimary);
 }
 
-.largeButton {
-  padding: 1.5rem 4rem;
-  font-size: 1.3rem;
+.ctaSubtitle {
+  font-size: 1.2rem;
+  color: var(--textSecondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+}
+
+.largeButton {
+  padding: 1.5rem 2rem;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.yoloButton {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary)); /* Updated to green theme */
 }
 
 .footer {
@@ -735,9 +1078,20 @@
     font-size: 2.5rem;
   }
   
-  .buttons {
+  .downloadButtons {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .downloadOption {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .versionDivider {
+    height: auto;
+    width: 100%;
+    margin: 1rem 0;
   }
   
   .processSteps {
@@ -797,10 +1151,38 @@
     gap: 0.5rem;
   }
   
-  /* Optimize leaf animation for mobile */
-  .leaf {
-    animation-duration: 25s !important;
-    transform: translate3d(0,0,0);
+  /* Stats Section */
+  .statsTitle {
+    font-size: 2rem;
+  }
+  
+  .statsSubtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .stats {
+    gap: 1.5rem;
+  }
+  
+  .statCard {
+    min-width: 160px;
+    padding: 2rem 1.5rem;
+  }
+  
+  .statCard h3 {
+    font-size: 2.5rem;
+  }
+  
+  /* Technical Comparison */
+  .comparisonGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .comparisonCard {
+    width: 100%;
+    max-width: 500px;
   }
 }
 
@@ -811,11 +1193,24 @@
   
   .subtitle {
     font-size: 1.1rem;
+    padding: 0 1rem; /* Added padding for small screens */
   }
   
-  .downloadButton, .adminButton {
-    width: 100%;
-    justify-content: center;
+  .downloadTitle {
+    font-size: 1.5rem;
+  }
+  
+  .downloadSubtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem; /* Added padding for small screens */
+  }
+  
+  .optionHeader h4 {
+    font-size: 1.3rem;
+  }
+  
+  .optionDescription {
+    font-size: 0.95rem;
   }
   
   .step {
@@ -841,10 +1236,39 @@
     font-size: 0.95rem;
   }
   
-  /* Further optimize leaf animation for small screens */
-  .leaf {
-    width: 35px !important;
-    height: 35px !important;
-    animation-duration: 20s !important;
+  /* Stats Section */
+  .statsSection {
+    margin: 4rem auto 2rem;
+  }
+  
+  .statsTitle {
+    font-size: 1.8rem;
+  }
+  
+  .statsSubtitle {
+    font-size: 0.95rem;
+  }
+  
+  .statCard {
+    min-width: 140px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .statCard h3 {
+    font-size: 2rem;
+  }
+  
+  .statIcon {
+    font-size: 2rem;
+  }
+  
+  /* Final CTA */
+  .ctaButtons {
+    gap: 1rem;
+  }
+  
+  .largeButton {
+    padding: 1.2rem 1.5rem;
+    font-size: 1rem;
   }
 }

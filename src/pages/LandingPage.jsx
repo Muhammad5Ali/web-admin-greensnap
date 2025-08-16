@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import styles from './LandingPage.module.css';
 import { Link } from 'react-router-dom';
-import reportImage from '../assets/images/report-interface.jpeg';
-import trackingImage from '../assets/images/tracking-map.jpeg';
-import verifyImage from '../assets/images/verified-cleanup.jpeg';
+import homeImage from '../assets/images/home.jpeg';
+import createReportImage from '../assets/images/create-report.jpeg';
+import topReportersImage from '../assets/images/top-reporters.jpeg';
+import perClousureDetailsImage from '../assets/images/per-clousure-details.jpeg';
+import rejectionDetailsImage from '../assets/images/rejection-details.jpeg';
+import profileScreenImage from '../assets/images/profile-screen.jpeg';
+import { API_BASE } from '../utils/constants';
 
 const LandingPage = () => {
-  const apkDownloadUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-v1.0.0.apk";
+  // APK Download URLs
+  const mobileNetApkUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-v1.0.0.apk";
+  const yoloApkUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-yolo-v2.0.0.apk";
+  
   const [animated, setAnimated] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [stats, setStats] = useState({
+    permanentResolved: 0,
+    activeSupervisors: 0,
+    registeredUsers: 0
+  });
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [statsError, setStatsError] = useState(null);
 
   useEffect(() => {
     setAnimated(true);
@@ -28,6 +42,31 @@ const LandingPage = () => {
     return () => {
       window.removeEventListener('resize', checkIsMobile);
     };
+  }, []);
+
+  // Fetch stats from backend
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/api/public/stats`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch stats');
+        }
+        const data = await response.json();
+        if (data.success) {
+          setStats(data.stats);
+        } else {
+          throw new Error('Invalid response format');
+        }
+      } catch (error) {
+        console.error('Stats fetch error:', error);
+        setStatsError(error.message);
+      } finally {
+        setStatsLoading(false);
+      }
+    };
+
+    fetchStats();
   }, []);
 
   // mailto with encoded subject and body
@@ -93,19 +132,60 @@ const LandingPage = () => {
           </h1>
           <p className={styles.subtitle}>Report waste issues in real-time. Track resolutions. Build a cleaner planet.</p>
           
-          <div className={styles.buttons}>
-            <a 
-              href={apkDownloadUrl}
-              className={`${styles.downloadButton} ${styles.pulseAnimation}`}
-              download="GreenSnap.apk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download GreenSnap mobile app (opens in a new tab)"
-            >
-              <span className={styles.buttonIcon} aria-hidden>📱</span> 
-              Download Mobile App
-            </a>
-
+          <div className={styles.downloadOptions}>
+            <h3 className={styles.downloadTitle}>Choose Your App Version</h3>
+            <p className={styles.downloadSubtitle}>Both versions offer the same core functionality with different AI classifiers</p>
+            
+            <div className={styles.downloadButtons}>
+              {/* MobileNet Version */}
+              <div className={styles.downloadOption}>
+                <div className={styles.optionHeader}>
+                  <div className={styles.modelIcon}>🚀</div>
+                  <h4>MobNetv3 Version</h4>
+                </div>
+                <p className={styles.optionDescription}>
+                  Uses lightweight MobileNetV3 model for fast waste classification
+                </p>
+                <a 
+                  href={mobileNetApkUrl}
+                  className={`${styles.downloadButton} ${styles.pulseAnimation}`}
+                  download="GreenSnap-MobileNet.apk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download MobileNet version (opens in a new tab)"
+                >
+                  <span className={styles.buttonIcon} aria-hidden>📱</span> 
+                  Download MobileNet
+                </a>
+              </div>
+              
+              <div className={styles.versionDivider}>
+                <span>OR</span>
+              </div>
+              
+              {/* YOLO Version */}
+              <div className={styles.downloadOption}>
+                <div className={styles.optionHeader}>
+                  <div className={styles.modelIcon}>🤖</div>
+                  <h4>YOLOv11 Version</h4>
+                </div>
+                <p className={styles.optionDescription}>
+                  Uses advanced YOLOv11 model for high-accuracy waste detection
+                </p>
+                <a 
+                  href={yoloApkUrl}
+                  className={`${styles.downloadButton} ${styles.pulseAnimation}`}
+                  download="GreenSnap-YOLO.apk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download YOLO version (opens in a new tab)"
+                >
+                  <span className={styles.buttonIcon} aria-hidden>📱</span> 
+                  Download YOLOv11
+                </a>
+              </div>
+            </div>
+            
             <Link 
               to="/login" 
               className={styles.adminButton} 
@@ -174,58 +254,163 @@ const LandingPage = () => {
           </div>
         </div>
         
-        {/* Animated Stats */}
-        <div className={styles.stats}>
-          <div className={styles.statCard}>
-            <h3>4+</h3>
-            <p>Permanent Resolved Reports</p>
+        {/* Stats Section */}
+        <div className={styles.statsSection}>
+          <div className={styles.statsHeader}>
+            <h2 className={styles.statsTitle}>Our Environmental Impact</h2>
+            <p className={styles.statsSubtitle}>Real-time statistics showcasing our collective achievements</p>
           </div>
-          <div className={styles.statCard}>
-            <h3>3+</h3>
-            <p>Active Supervisors</p>
+          
+          <div className={styles.stats}>
+            {statsLoading ? (
+              // Loading skeleton
+              [1, 2, 3].map((_, index) => (
+                <div key={index} className={`${styles.statCard} ${styles.skeleton}`}>
+                  <div className={styles.skeletonText}></div>
+                  <div className={`${styles.skeletonText} ${styles.short}`}></div>
+                </div>
+              ))
+            ) : statsError ? (
+              <div className={styles.errorMessage}>
+                Stats unavailable. Please try again later.
+              </div>
+            ) : (
+              <>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon}>✅</div>
+                  <h3>{stats.permanentResolved}</h3>
+                  <p>Per-Resolved Reports</p>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon}>👥</div>
+                  <h3>{stats.activeSupervisors}</h3>
+                  <p>Active Supervisors</p>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon}>👤</div>
+                  <h3>{stats.registeredUsers}</h3>
+                  <p>Registered Users</p>
+                </div>
+              </>
+            )}
           </div>
-          <div className={styles.statCard}>
-            <h3>7+</h3>
-            <p>Registered Users</p>
+        </div>
+        
+        {/* Technical Comparison Section */}
+        <div className={styles.techComparison}>
+          <h2>Technology Comparison</h2>
+          <div className={styles.comparisonGrid}>
+            <div className={styles.comparisonCard}>
+              <div className={styles.modelHeader}>
+                <div className={styles.modelIconLarge}>🚀</div>
+                <h3>MobileNetV3</h3>
+              </div>
+              <ul className={styles.techFeatures}>
+                <li>✅ Lightweight model </li>
+                <li>⚡ Faster processing on low-end devices</li>
+                <li>📱 Optimized for mobile performance</li>
+                <li>⚙️ Efficient resource usage</li>
+              </ul>
+            </div>
+            
+            <div className={styles.comparisonCard}>
+              <div className={styles.modelHeader}>
+                <div className={styles.modelIconLarge}>🤖</div>
+                <h3>YOLOv11</h3>
+              </div>
+              <ul className={styles.techFeatures}>
+                <li>🎯 Higher detection accuracy</li>
+                <li>🔍 Better object recognition</li>
+                <li>🖼️ Handles complex scenes effectively</li>
+                <li>📈 Advanced computer vision</li>
+              </ul>
+            </div>
           </div>
+          <p className={styles.techNote}>
+           The core reporting and tracking functionality of both versions is identical.
+          </p>
         </div>
         
         {/* App Screenshots */}
         <div className={styles.screenshots}>
-          <h2>See It In Action</h2>
+          <h2>Track Report & Contribute to Communnity</h2>
           <div className={styles.screenshotGrid}>
+            {/* Home Page */}
             <div className={styles.screenshotFrame}>
               <div className={styles.phoneMockup}>
                 <img 
-                  src={reportImage} 
-                  alt="Report waste interface" 
+                  src={homeImage} 
+                  alt="Home Page" 
                   className={styles.screenshotImage}
                   loading="lazy"
                 />
               </div>
-              <p>Report Waste</p>
+              <p>Home Page</p>
             </div>
+            
+            {/* Create Report */}
             <div className={styles.screenshotFrame}>
               <div className={styles.phoneMockup}>
                 <img 
-                  src={trackingImage} 
-                  alt="Live tracking map" 
+                  src={createReportImage} 
+                  alt="Create Report Interface" 
                   className={styles.screenshotImage}
                   loading="lazy"
                 />
               </div>
-              <p>Report Tracking</p>
+              <p>Create Report</p>
             </div>
+            
+            {/* Top Reporters */}
             <div className={styles.screenshotFrame}>
               <div className={styles.phoneMockup}>
                 <img 
-                  src={verifyImage} 
-                  alt="Verified cleanup proof" 
+                  src={topReportersImage} 
+                  alt="Top Reporters Leaderboard" 
                   className={styles.screenshotImage}
                   loading="lazy"
                 />
               </div>
-              <p>All Reports</p>
+              <p>Top Reporters</p>
+            </div>
+            
+            {/* Per-Clousure Details */}
+            <div className={styles.screenshotFrame}>
+              <div className={styles.phoneMockup}>
+                <img 
+                  src={perClousureDetailsImage} 
+                  alt="Per-Clousure Details" 
+                  className={styles.screenshotImage}
+                  loading="lazy"
+                />
+              </div>
+              <p>Per-Clousure Details</p>
+            </div>
+            
+            {/* Rejection Details */}
+            <div className={styles.screenshotFrame}>
+              <div className={styles.phoneMockup}>
+                <img 
+                  src={rejectionDetailsImage} 
+                  alt="Rejection Details" 
+                  className={styles.screenshotImage}
+                  loading="lazy"
+                />
+              </div>
+              <p>Rejection Details</p>
+            </div>
+            
+            {/* Profile Screen */}
+            <div className={styles.screenshotFrame}>
+              <div className={styles.phoneMockup}>
+                <img 
+                  src={profileScreenImage} 
+                  alt="User Profile Screen" 
+                  className={styles.screenshotImage}
+                  loading="lazy"
+                />
+              </div>
+              <p>Profile Screen</p>
             </div>
           </div>
         </div>
@@ -233,16 +418,29 @@ const LandingPage = () => {
         {/* Final CTA */}
         <div className={styles.finalCta}>
           <h2>Ready to make a difference?</h2>
-          <a 
-            href={apkDownloadUrl} 
-            className={`${styles.downloadButton} ${styles.largeButton}`}
-            download="GreenSnap.apk"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download GreenSnap app now (opens in a new tab)"
-          >
-            Download App Now
-          </a>
+          <p className={styles.ctaSubtitle}>Download the version that works best for your device</p>
+          <div className={styles.ctaButtons}>
+            <a 
+              href={mobileNetApkUrl} 
+              className={`${styles.downloadButton} ${styles.largeButton}`}
+              download="GreenSnap-MobileNet.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download MobileNet version (opens in a new tab)"
+            >
+              Download MobileNet Version
+            </a>
+            <a 
+              href={yoloApkUrl} 
+              className={`${styles.downloadButton} ${styles.largeButton} ${styles.yoloButton}`}
+              download="GreenSnap-YOLO.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download YOLO version (opens in a new tab)"
+            >
+              Download YOLOv11 Version
+            </a>
+          </div>
         </div>
       </main>
       

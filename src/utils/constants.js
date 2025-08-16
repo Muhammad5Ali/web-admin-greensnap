@@ -78,3 +78,5 @@ export const TRANSITIONS = {
 export const API_URL = import.meta.env.VITE_API_BASE + '/api/auth';
 // export const API_URL = "https://gs-admin.onrender.com/api/auth";
 // export const API_URL = "http://localhost:3000/api/auth";
+// Add these at the bottom of utils/constant.js
+export const API_BASE = import.meta.env.VITE_API_BASE;
