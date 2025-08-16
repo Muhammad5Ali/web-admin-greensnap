@@ -12,6 +12,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import WorkersPage from './pages/WorkersPage';
 import WorkerAttendancePage from './pages/WorkerAttendancePage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import LandingPage from './pages/LandingPage';
 import './styles/responsive.css';
 
 const PrivateRoute = ({ children }) => {
@@ -25,6 +26,16 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
+            <Route path="/" element={<LandingPage />} /> {/* New landing page */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route 
+              path="/dashboard" 
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              } 
+            />
             <Route path="/login" element={<LoginPage />} />
             <Route 
               path="/dashboard" 
