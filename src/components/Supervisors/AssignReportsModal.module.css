@@ -1,0 +1,179 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--textPrimary);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--darkGray);
+}
+
+.modalBody {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.reportsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reportItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.reportItem:hover {
+  background-color: var(--primaryLight);
+}
+
+.reportItem.selected {
+  background-color: var(--primaryLight);
+  border-color: var(--primary);
+}
+
+.checkbox {
+  margin-right: 1rem;
+  margin-top: 4px;
+}
+
+.reportInfo {
+  flex: 1;
+}
+
+.reportInfo h4 {
+  margin-bottom: 0.5rem;
+  color: var(--textPrimary);
+}
+
+.address {
+  color: var(--darkGray);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.date {
+  color: var(--darkGray);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.error {
+  color: var(--error);
+  background-color: var(--errorLight);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--lightGray);
+  color: var(--darkGray);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.assignButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.assignButton:disabled {
+  background: var(--lightGray);
+  color: var(--darkGray);
+  cursor: not-allowed;
+}

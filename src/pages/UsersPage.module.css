@@ -1,0 +1,195 @@
+.usersPage {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: var(--textPrimary);
+}
+
+.header p {
+  color: var(--textSecondary);
+  font-size: 1.1rem;
+}
+
+.controls {
+  margin-bottom: 2rem;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  background: var(--cardBackground);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--textPrimary);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.usersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.userCard {
+  background: var(--cardBackground);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.userCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatarContainer {
+  margin-right: 1.2rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarFallback {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.username {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: var(--textPrimary);
+}
+
+.joinDate {
+  font-size: 0.9rem;
+  color: var(--textSecondary);
+}
+
+/* Loading, error, empty states */
+.loadingContainer,
+.errorContainer,
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--lightGray);
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorIcon {
+  font-size: 3rem;
+  color: var(--error);
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.retryButton:hover {
+  background-color: var(--primary-dark);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  background: var(--cardBackground);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+}
+
+.emptyIcon {
+  margin-bottom: 1rem;
+  color: var(--textSecondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .usersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .userCard {
+    padding: 1.2rem;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .avatarFallback {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .usersGrid {
+    grid-template-columns: 1fr;
+  }
+}

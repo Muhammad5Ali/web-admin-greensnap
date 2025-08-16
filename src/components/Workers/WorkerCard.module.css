@@ -1,0 +1,244 @@
+/* src/components/Workers/WorkerCard.module.css */
+.card {
+    /* Add flex column layout */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure card takes full height */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #eaeaea;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  padding: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  /* Prevent header from growing */
+  flex-shrink: 0;
+}
+
+.avatarContainer {
+  margin-right: 1rem;
+}
+
+.avatarFallback {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--textPrimary);
+}
+
+.email {
+  margin: 0.25rem 0 0;
+  color: var(--darkGray);
+  font-size: 0.9rem;
+}
+
+.cardStats {
+  display: flex;
+  padding: 1.5rem 1.5rem 0;
+  /* Add minimum height to prevent layout shift */
+  min-height: 90px; /* Adjust as needed */
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.statIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primaryLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  color: var(--primary);
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--darkGray);
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--textPrimary);
+}
+
+.cardFooter {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+
+.viewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.viewBtn:hover {
+  background: var(--primaryDark);
+  transform: translateY(-2px);
+}
+
+.viewBtn span {
+  margin-right: 0.5rem;
+}
+
+.actions {
+  position: relative;
+  z-index: 10;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: green;
+  transition: color 0.2s;
+  padding: 0.5rem;
+}
+
+.deleteButton:hover {
+  color:green;
+}
+
+.modalContent {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.deleteConfirmButton {
+  padding: 0.5rem 1rem;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.deleteConfirmButton:hover {
+  background: #ff5252;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.confirmModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* High z-index to be on top */
+}
+
+.confirmModal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  z-index: 1001;
+}
+.statContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  height: 100%;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--darkGray);
+  /* Prevent label from wrapping */
+  white-space: nowrap;
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--textPrimary);
+  /* Allow text wrapping but limit to 2 lines */
+  display: -webkit-box;
+  /* -webkit-line-clamp: 2;  */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.4em; /* Ensure consistent height for 2 lines */
+  line-height: 1.2em; /* Adjust line height */
+}
+
+.cardFooter {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+  /* Push footer to bottom */
+  margin-top: auto;
+  flex-shrink: 0;
+}

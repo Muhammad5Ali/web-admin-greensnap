@@ -1,0 +1,44 @@
+/* src/components/Attendance/AttendanceRecord.module.css */
+.record {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s ease;
+}
+
+.record:hover {
+  background-color: #f9f9f9;
+}
+
+.date {
+  flex: 1;
+  font-weight: 500;
+}
+
+.status {
+  flex: 1;
+  text-align: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.tasks {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tasksIcon {
+  font-size: 1.1rem;
+}
+
+.supervisor {
+  flex: 1;
+  text-align: right;
+  color: var(--darkGray);
+}

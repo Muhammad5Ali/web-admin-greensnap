@@ -1,0 +1,263 @@
+.card {
+  background-color: var(--cardBackground);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.avatarContainer {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primaryLight);
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--success);
+  border: 2px solid white;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--textPrimary);
+  margin-bottom: 0.25rem;
+}
+
+.email {
+  font-size: 0.9rem;
+  color: var(--darkGray);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--inputBackground);
+  border: none;
+  color: var(--darkGray);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background-color: var(--primaryLight);
+  color: var(--primary);
+}
+
+.cardStats {
+  display: flex;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--textPrimary);
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--darkGray);
+}
+
+.performanceSection {
+  padding: 1.5rem;
+}
+
+.performanceHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--darkGray);
+}
+
+.performanceRating {
+  font-weight: 600;
+}
+
+.progressBar {
+  height: 8px;
+  background-color: var(--lightGray);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.cardFooter {
+  display: flex;
+  padding: 0 1.5rem 1.5rem;
+  gap: 12px;
+}
+
+.viewBtn, .assignBtn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewBtn {
+  background-color: var(--primaryLight);
+  color: var(--primary);
+  border: none;
+}
+
+.viewBtn:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.assignBtn {
+  background-color: var(--textPrimary);
+  color: white;
+  border: none;
+}
+
+.assignBtn:hover {
+  background-color: var(--primaryDark);
+}
+/* Add these styles */
+.confirmOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirmDialog {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.confirmDialog h3 {
+  margin-top: 0;
+  color: var(--textPrimary);
+  font-size: 1.5rem;
+}
+
+.confirmDialog p {
+  color: var(--darkGray);
+  margin: 1rem 0 2rem;
+}
+
+.confirmActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--lightGray);
+  color: var(--darkGray);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.deleteButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--error);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+  background: #c62828;
+}
+
+.error {
+  color: var(--error);
+  background-color: var(--errorLight);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}

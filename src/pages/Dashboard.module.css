@@ -1,0 +1,261 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.welcomeCard {
+  background-color: var(--cardBackground);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid var(--primary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcomeCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+.welcomeCard h1 {
+  font-size: 2.2rem;
+  color: var(--textPrimary);
+  margin-bottom: 0.5rem;
+}
+
+.welcomeCard p {
+  font-size: 1.1rem;
+  color: var(--textSecondary);
+}
+
+.dateBadge {
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.chartsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 25px;
+  margin-top: 2rem;
+}
+
+.chartCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 20px;
+  min-height: 420px;
+  transition: all 0.3s ease;
+}
+
+.chartCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.chartCard h3 {
+  color: var(--textPrimary);
+  margin-bottom: 0.25rem;
+  font-size: 1.3rem;
+}
+
+.chartSubtitle {
+  color: var(--textSecondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.chartWrapper {
+  height: 350px;
+  width: 100%;
+  overflow: visible;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--lightGray);
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.errorIcon {
+  font-size: 3rem;
+  color: var(--error);
+}
+
+.retryButton {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 15px;
+}
+
+.retryButton:hover {
+  background-color: var(--primary-dark);
+}
+
+.noData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--textSecondary);
+  font-style: italic;
+  font-size: 1.1rem;
+  padding: 20px;
+  text-align: center;
+}
+
+.customTooltip {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+}
+
+.tooltipLabel {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--textPrimary);
+  border-bottom: 1px solid var(--lightGray);
+  padding-bottom: 6px;
+}
+
+.tooltipItem {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.tooltipDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Recharts tooltip styling */
+.recharts-default-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.recharts-tooltip-item {
+  color: var(--textPrimary) !important;
+}
+
+.recharts-tooltip-item-name {
+  color: var(--darkGray) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .chartsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .chartCard {
+    min-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+  
+  .welcomeCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .chartsContainer {
+    gap: 1.5rem;
+  }
+  /* Add this to .chartCard */
+.chartCard {
+  background: var(--cardBackground);
+  /* rest of your styles */
+}
+
+
+}
+/* Add this new rule */
+.recharts-surface {
+  background-color: var(--cardBackground);
+  border-radius: 8px;
+  padding: 10px;
+}

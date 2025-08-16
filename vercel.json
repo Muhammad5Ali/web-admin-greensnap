@@ -1,0 +1,18 @@
+{
+  "build": {
+    "env": {
+      "VITE_API_BASE": "https://gs-admin.onrender.com"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "https://gs-admin.onrender.com/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

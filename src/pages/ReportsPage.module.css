@@ -1,0 +1,319 @@
+.reportsPage {
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 1rem;
+  color: var(--textPrimary);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.summaryItem {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadowSmall);
+  text-align: center;
+  transition: var(--transitionFast);
+}
+
+.summaryItem:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadowMedium);
+}
+
+.summaryValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.summaryItem:nth-child(1) .summaryValue {
+  color: var(--primary);
+}
+
+.summaryItem:nth-child(2) .summaryValue {
+  color: var(--warning);
+}
+
+.summaryItem:nth-child(3) .summaryValue {
+  color: var(--info);
+}
+
+.summaryItem:nth-child(4) .summaryValue {
+  color: var(--success);
+}
+
+.summaryLabel {
+  color: var(--darkGray);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  padding: 0.7rem 1.5rem;
+  background-color: var(--cardBackground);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.filterButton.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.filterButton:hover:not(.active) {
+  background-color: var(--inputBackground);
+}
+
+.searchBox {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: var(--shadowSmall);
+}
+
+.searchInput {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  outline: none;
+  min-width: 250px;
+  font-size: 1rem;
+}
+
+.searchButton {
+  padding: 0 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.searchButton:hover {
+  background: var(--primaryDark);
+}
+
+.loadingContainer, .error, .empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+  background: var(--cardBackground);
+  border-radius: 16px;
+  box-shadow: var(--shadowSmall);
+  min-height: 400px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--primaryLight);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorIcon, .emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.errorIcon {
+  color: var(--error);
+}
+
+.emptyIcon {
+  color: var(--darkGray);
+}
+
+.error p, .empty p {
+  font-size: 1.1rem;
+  color: var(--darkGray);
+  margin-bottom: 1.5rem;
+}
+
+.retryButton {
+  padding: 0.7rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.retryButton:hover {
+  background: var(--primaryDark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadowMedium);
+}
+
+.empty h3 {
+  margin: 0.5rem 0;
+  color: var(--textPrimary);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+}
+
+.paginationButton {
+  padding: 0.7rem 1.5rem;
+  background-color: var(--cardBackground);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadowSmall);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-weight: 500;
+  color: var(--darkGray);
+}
+.summaryValueSkeleton {
+  height: 40px;
+  width: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  margin: 0 auto 8px;
+  animation: loading 1.5s infinite;
+}
+
+.summaryLabelSkeleton {
+  height: 16px;
+  width: 80px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.statsError {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.retryButton {
+  margin-left: auto;
+  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid #c62828;
+  border-radius: 4px;
+  color: #c62828;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.retryButton:hover {
+  background: #c62828;
+  color: white;
+}
+/* Add these styles to your existing CSS module */
+
+.searchSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.summaryValueSkeleton, .summaryLabelSkeleton {
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.summaryValueSkeleton {
+  width: 40px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.summaryLabelSkeleton {
+  width: 80px;
+  height: 16px;
+}
+.summaryItem:nth-child(5) .summaryValue {
+  color: var(--primary); 
+}

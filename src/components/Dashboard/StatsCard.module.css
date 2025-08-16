@@ -1,0 +1,81 @@
+.card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--card-accent);
+  min-width: 0; /* Allow shrinking */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.2rem;
+  background-color: var(--primary);
+}
+
+.icon {
+  font-size: 2rem;
+  color: white;
+}
+
+.title {
+  font-size: 1.1rem;
+  color: var(--darkGray);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--textPrimary);
+  margin: 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--textSecondary);
+  margin: 0 0 1.2rem;
+}
+
+.progressBar {
+  height: 6px;
+  background-color: var(--lightGray);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  width: 70%;
+  background-color: var(--card-accent);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .value {
+    font-size: 1.8rem;
+  }
+}

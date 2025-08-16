@@ -1,0 +1,247 @@
+/* src/components/Auth/LoginForm.module.css */
+:root {
+  --primary: #2e7d32;
+  --primary-dark: #1b5e20;
+  --primary-light: #4caf50;
+  --background: #f8f9fa;
+  --lightBackground: #ffffff;
+  --textPrimary: #2d3748;
+  --textSecondary: #718096;
+  --border: #e2e8f0;
+  --inputBackground: #ffffff;
+  --placeholderText: #a0aec0;
+  --error: #e53e3e;
+  --lightGray: #e2e8f0;
+  --darkGray: #4a5568;
+  --white: #ffffff;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card {
+  width: 100%;
+  max-width: 450px;
+  perspective: 1000px;
+}
+
+.loginForm {
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 40px 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.loginForm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+}
+
+.logoContainer {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.securityBadge {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.shieldIcon {
+  color: white;
+  font-size: 28px;
+}
+
+.title {
+  color: var(--textPrimary);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 5px;
+  letter-spacing: -0.5px;
+}
+
+.green {
+  color: var(--primary);
+}
+
+.snap {
+  color: #333;
+}
+
+.admin {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.subtitle {
+  color: var(--textSecondary);
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 20px 16px 50px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--inputBackground);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: var(--textPrimary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25);
+}
+
+.icon {
+  position: absolute;
+  left: 18px;
+  color: var(--placeholderText);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--placeholderText);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.passwordToggle:hover {
+  color: var(--primary);
+}
+
+.submitButton {
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.submitButton:hover {
+  box-shadow: 0 6px 8px rgba(76, 175, 80, 0.3);
+  background: linear-gradient(to right, var(--primary-dark), var(--primary));
+}
+
+.submitButton:disabled {
+  background: var(--lightGray);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.error {
+  background-color: #fff5f5;
+  color: var(--error);
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid #fed7d7;
+  font-weight: 500;
+}
+
+.buttonLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.loaderDot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  animation: loaderAnimation 1.4s infinite ease-in-out both;
+}
+
+.loaderDot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loaderDot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loaderAnimation {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+
+.securityInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--darkGray);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.securityIcon {
+  color: var(--primary);
+}
+
+.footerNote {
+  text-align: center;
+  color: var(--darkGray);
+  font-size: 0.85rem;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--textSecondary);
+}

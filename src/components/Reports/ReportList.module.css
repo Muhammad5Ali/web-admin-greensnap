@@ -1,0 +1,38 @@
+.reportList {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadowSmall);
+  background-color: var(--cardBackground);
+}
+
+.header {
+  display: flex;
+  background-color: var(--primary);
+  padding: 1.25rem 2rem;
+  font-weight: 600;
+  color: var(--white);
+  font-size: 1.1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerCell {
+  flex: 1;
+  padding: 0 0.75rem;
+}
+
+.listContainer {
+  padding: 1.5rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+  
+  .listContainer {
+    padding: 0.5rem;
+  }
+}

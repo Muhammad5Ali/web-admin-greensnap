@@ -1,0 +1,165 @@
+.reportItem {
+  display: flex;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--cardBackground);
+  box-shadow: var(--shadowSmall);
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: var(--transitionMedium);
+  border-left: 4px solid var(--primary);
+}
+
+.reportItem:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadowMedium);
+}
+
+.cell {
+  flex: 1;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.titleContainer {
+  flex: 1;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--textPrimary);
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.user {
+  font-size: 0.85rem;
+  color: var(--darkGray);
+  display: flex;
+  align-items: center;
+}
+
+.user:before {
+  content: "•";
+  margin: 0 0.5rem;
+  color: var(--border);
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: var(--placeholderText);
+  background: var(--lightBackground);
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+}
+
+.typeBadge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--primaryLight);
+  border-radius: 20px;
+  color: var(--primaryDark);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.statusIcon {
+  font-size: 1.1rem;
+}
+
+.viewButton {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transitionFast);
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.viewButton:hover {
+  background-color: var(--primaryDark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.viewButton span {
+  transition: transform 0.3s ease;
+}
+
+.viewButton:hover span {
+  transform: translateX(3px);
+}
+
+/* For rejected status */
+.statusBadge.rejected {
+  background-color: var(--errorLight);
+  color: var(--error);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .reportItem {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+    margin-bottom: 0.5rem;
+  }
+  
+  .reportItem:hover {
+    transform: none;
+    box-shadow: var(--shadowSmall);
+  }
+  
+  .cell {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .cell:last-child {
+    border-bottom: none;
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+  
+  .timestamp {
+    background: none;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .user:before {
+    content: none;
+    margin: 0;
+  }
+  
+  .user {
+    margin-top: 0.25rem;
+  }
+  
+  .viewButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

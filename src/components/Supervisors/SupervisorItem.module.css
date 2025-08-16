@@ -1,0 +1,76 @@
+.supervisorItem {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.supervisorItem:hover {
+  background-color: var(--inputBackground);
+}
+
+.cell {
+  flex: 1;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.avatarContainer {
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.name {
+  font-weight: 600;
+  color: var(--textPrimary);
+  margin-bottom: 0.25rem;
+}
+
+.email {
+  font-size: 0.9rem;
+  color: var(--darkGray);
+}
+
+.statValue {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--textPrimary);
+  margin-right: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--darkGray);
+}
+
+.performanceBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.viewButton {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.viewButton:hover {
+  background-color: #388e3c;
+}
