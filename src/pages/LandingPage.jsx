@@ -141,7 +141,7 @@ const LandingPage = () => {
               <div className={styles.downloadOption}>
                 <div className={styles.optionHeader}>
                   <div className={styles.modelIcon}>🚀</div>
-                  <h4>MobNetv3 Version</h4>
+                  <h4>MOBNETv3 Version</h4>
                 </div>
                 <p className={styles.optionDescription}>
                   Uses lightweight MobileNetV3 model for fast waste classification
