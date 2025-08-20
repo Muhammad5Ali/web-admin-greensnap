@@ -12,7 +12,7 @@ import { API_BASE } from '../utils/constants';
 const LandingPage = () => {
   // APK Download URLs
   const mobileNetApkUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-v1.0.0.apk";
-  const yoloApkUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-yolo-v2.0.0.apk";
+  const yoloApkUrl = "https://github.com/Muhammad5Ali/greensnap-mobile/releases/download/v1.0.0/greensnap-yolo-v3.0.0.apk";
   
   const [animated, setAnimated] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -333,7 +333,7 @@ const LandingPage = () => {
         
         {/* App Screenshots */}
         <div className={styles.screenshots}>
-          <h2>Track Report & Contribute to Communnity</h2>
+          <h2>Track Report & Contribute to Community</h2>
           <div className={styles.screenshotGrid}>
             {/* Home Page */}
             <div className={styles.screenshotFrame}>
